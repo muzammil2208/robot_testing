@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220404 11:24:54.409" rpa="false" schemaversion="3">
+<suite id="s1" name="Login" source="C:\Users\Dell\Desktop\robotlearning\login testing\login.robot">
+<test id="s1-t1" name="login_pass" line="5">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220404 11:24:54.768" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220404 11:24:54.767" endtime="20220404 11:24:56.816"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220404 11:24:56.822" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220404 11:24:56.821" endtime="20220404 11:24:57.076"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220404 11:24:57.078" level="INFO">Typing password into text field 'id:password'.</msg>
+<msg timestamp="20220404 11:24:57.176" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220404 11:24:57.322" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220404 11:24:57.077" endtime="20220404 11:24:57.322"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220404 11:24:57.323" level="INFO">Clicking element 'id:login-button'.</msg>
+<status status="PASS" starttime="20220404 11:24:57.323" endtime="20220404 11:24:57.500"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>xpath:/html/body/div/div/div/div[1]/div[2]/span</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20220404 11:24:57.555" level="INFO">Current page contains element 'xpath:/html/body/div/div/div/div[1]/div[2]/span'.</msg>
+<status status="PASS" starttime="20220404 11:24:57.501" endtime="20220404 11:24:57.555"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220404 11:25:00.567" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20220404 11:24:57.557" endtime="20220404 11:25:00.567"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220404 11:25:00.568" endtime="20220404 11:25:02.934"/>
+</kw>
+<status status="PASS" starttime="20220404 11:24:54.765" endtime="20220404 11:25:02.936"/>
+</test>
+<test id="s1-t2" name="login_fail" line="14">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220404 11:25:02.951" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220404 11:25:02.948" endtime="20220404 11:25:05.103"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>muzammil</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220404 11:25:05.105" level="INFO">Typing text 'muzammil' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220404 11:25:05.104" endtime="20220404 11:25:05.329"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>khan</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220404 11:25:05.330" level="INFO">Typing password into text field 'id:password'.</msg>
+<msg timestamp="20220404 11:25:05.406" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220404 11:25:05.481" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220404 11:25:05.329" endtime="20220404 11:25:05.481"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220404 11:25:05.490" level="INFO">Clicking element 'id:login-button'.</msg>
+<status status="PASS" starttime="20220404 11:25:05.489" endtime="20220404 11:25:05.590"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Epic sadface: Username and password do not match any user in this service</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220404 11:25:05.614" level="INFO">Current page contains text 'Epic sadface: Username and password do not match any user in this service'.</msg>
+<status status="PASS" starttime="20220404 11:25:05.590" endtime="20220404 11:25:05.614"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220404 11:25:07.618" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220404 11:25:05.614" endtime="20220404 11:25:07.619"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220404 11:25:07.620" endtime="20220404 11:25:09.888"/>
+</kw>
+<status status="PASS" starttime="20220404 11:25:02.944" endtime="20220404 11:25:09.890"/>
+</test>
+<status status="PASS" starttime="20220404 11:24:54.413" endtime="20220404 11:25:09.895"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
