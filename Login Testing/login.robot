@@ -6,18 +6,29 @@ ${password_correct}     secret_sauce
 
 *** Test Cases ***
 login_pass
-    open browser    https://www.saucedemo.com/      chrome
+    [tags]  smoke
+    log on to the sauceLabs
     enter valid credentials
     page should contain element    xpath:/html/body/div/div/div/div[1]/div[2]/span
-    sleep   3s
     close browser
 
 login_fail
-    open browser    https://www.saucedemo.com/      chrome
+    [tags]  smoke
+    log on to the sauceLabs
     enter invalid credentials
     page should contain     Epic sadface: Username and password do not match any user in this service
-    sleep   2s
     close browser  
+
+logout
+    log on to the sauceLabs
+    enter valid credentials
+    page should contain element    xpath:/html/body/div/div/div/div[1]/div[2]/span
+    click element   id:react-burger-menu-btn
+    sleep    1s
+    click element   id:logout_sidebar_link
+    page should contain element     id:login-button
+    close browser
+    
 
 *** Keywords ***
 enter valid credentials
@@ -29,3 +40,6 @@ enter invalid credentials
     input text      id:user-name    muzammil
     input password  id:password     hello
     click element   id:login-button
+
+log on to the sauceLabs
+    open browser     https://www.saucedemo.com/      chrome
