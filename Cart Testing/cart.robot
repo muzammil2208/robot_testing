@@ -8,14 +8,13 @@ Test Teardown   test shutdown
 ${standardUser}     standard_user
 ${correct_password}     secret_sauce
 
-*** Test Cases ***
-Add backpack
+*** Test Cases ***          
+Add backpack                
     [tags]      functional
-    click element   id:add-to-cart-sauce-labs-backpack
-    ${count}=  Get Element Count    xpath:/html/body/div[1]/div/div/div[1]/div[1]/div[3]/a/span
-    Run Keyword IF  ${count} > 0  check backpack in cart   
-    ...  ELSE  FAIL     Item not added to cart 
-      
+    add backpack and check in cart
+          
+    
+   
 add bike light
     [tags]       functional
     click element   id:add-to-cart-sauce-labs-bike-light
@@ -91,3 +90,22 @@ check Onesie in cart
 check Test-all-things-Tshirt in cart
     click element   xpath:/html/body/div[1]/div/div/div[1]/div[1]/div[3]/a
     page should contain    Test.allTheThings() T-Shirt (Red)
+
+add backpack and check in cart
+    click element   id:add-to-cart-sauce-labs-backpack
+    ${button_id}=  Set Variable     remove-sauce-labs-backpack
+    check add button is updated   ${button_id}
+    ${check backpack in cart}=  Set Variable        check backpack in cart
+    check cart icon is updated   ${check backpack in cart}
+
+
+check cart icon is updated
+    [Arguments]             ${check function}            
+    ${count}=   Get text    xpath:/html/body/div[1]/div/div/div[1]/div[1]/div[3]/a/span
+    Run Keyword IF  ${count} == 1  ${check function}  
+    ...  ELSE  FAIL     Item not added to cart 
+      
+
+check add button is updated 
+    [Arguments]             ${button_id}
+    Element text should be      ${button_id}       remove       Add button is not updated       true
