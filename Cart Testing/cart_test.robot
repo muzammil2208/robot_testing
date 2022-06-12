@@ -32,4 +32,6 @@ SauceLabsBackpackandSauceLabsBikeLight
 ThreeItems
        check cart for SaucelabsBikeLight + SauceLabsOnesie + SauceLabsFleeceJacket
 
+all_products
+       check all items are added to cart
 

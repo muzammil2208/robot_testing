@@ -14,6 +14,8 @@ ${saucelabs_fleece_jacket}      /html/body/div/div/div/div[2]/div/div/div/div[4]
 ${saucelabs_onesie}     /html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button
 ${sauclabs_testallthings_tshirt}        /html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button
 @{products_to_add}   ${saucelabs_bike_light}   ${saucelabs_onesie}   ${saucelabs_fleece_jacket}
+@{all_products}      ${saucelabs_backpack}  ${saucelabs_bike_light}  ${saucelabs_fleece_jacket}  ${saucelabs_onesie}  ${sauclabs_testallthings_tshirt}  ${saucelabs_bolt_tshirt}
+ 
 *** keywords ***
 
 # common keywordd
@@ -58,6 +60,21 @@ check saucelabsbikelight,saucelabsonesie and saucelabs fleece jacket are added t
     ELSE
         FAIL     Product not added to cart
     END   
+
+check for all items added to cart
+    ${cart_item_count}=     Get Element count   class:cart_item
+    IF   ${cart_item_count} == 6
+        Log to console   products are added
+        page should contain    Sauce Labs Onesie
+        page should contain    Sauce Labs Bike Light
+        page should contain    Sauce Labs Fleece Jacket  
+        page should contain    Sauce Labs Bolt T-Shirt
+        page should contain    Sauce Labs Backpack
+        page should contain    Test.allTheThings() T-Shirt (Red)
+    ELSE
+        FAIL    all items are not added to cart
+    END
+
 
 
 
@@ -125,3 +142,11 @@ check cart for SaucelabsBikeLight + SauceLabsOnesie + SauceLabsFleeceJacket
     END
     click element   xpath:${cart_icon}
     check saucelabsbikelight,saucelabsonesie and saucelabs fleece jacket are added to cart
+
+check all items are added to cart
+    FOR    ${item}   IN     @{all_products}
+            click element   xpath:${item}
+            check add to cart button converted  ${item}
+    END
+    click element   xpath:${cart_icon}
+    check for all items added to cart

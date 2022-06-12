@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220612 00:11:15.417" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220612 15:20:12.687" rpa="false" schemaversion="3">
 <suite id="s1" name="Cart Test" source="C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing\cart_test.robot">
-<test id="s1-t1" name="ThreeItems" line="32">
+<test id="s1-t1" name="all_products" line="35">
 <kw name="login to saucelabs" library="common" type="SETUP">
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>https://www.saucedemo.com/</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220612 00:11:15.928" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20220612 00:11:15.927" endtime="20220612 00:11:18.703"/>
+<msg timestamp="20220612 15:20:13.210" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220612 15:20:13.208" endtime="20220612 15:20:15.524"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id:user-name</arg>
 <arg>standard_user</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:18.705" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20220612 00:11:18.704" endtime="20220612 00:11:18.921"/>
+<msg timestamp="20220612 15:20:15.528" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220612 15:20:15.525" endtime="20220612 15:20:15.728"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath:${password_field_xpath}</arg>
 <arg>secret_sauce</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:18.922" level="INFO">Typing text 'secret_sauce' into text field 'xpath:/html/body/div/div/div[2]/div[1]/div[1]/div/form/div[2]/input'.</msg>
-<status status="PASS" starttime="20220612 00:11:18.921" endtime="20220612 00:11:19.110"/>
+<msg timestamp="20220612 15:20:15.729" level="INFO">Typing text 'secret_sauce' into text field 'xpath:/html/body/div/div/div[2]/div[1]/div[1]/div/form/div[2]/input'.</msg>
+<status status="PASS" starttime="20220612 15:20:15.728" endtime="20220612 15:20:15.884"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>id:login-button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.110" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20220612 00:11:19.110" endtime="20220612 00:11:19.300"/>
+<msg timestamp="20220612 15:20:15.885" level="INFO">Clicking button 'id:login-button'.</msg>
+<status status="PASS" starttime="20220612 15:20:15.884" endtime="20220612 15:20:16.039"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:15.927" endtime="20220612 00:11:19.300"/>
+<status status="PASS" starttime="20220612 15:20:13.208" endtime="20220612 15:20:16.040"/>
 </kw>
-<kw name="check cart for SaucelabsBikeLight + SauceLabsOnesie + SauceLabsFleeceJacket" library="common">
+<kw name="check all items are added to cart" library="common">
 <for flavor="IN">
 <var>${item}</var>
-<value>@{products_to_add}</value>
+<value>@{all_products}</value>
+<iter>
+<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/button</var>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:${item}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.055" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.054" endtime="20220612 15:20:16.415"/>
+</kw>
+<kw name="check add to cart button converted" library="common">
+<arg>${item}</arg>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${button_string}</var>
+<arg>xpath=${button_xpath}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.477" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.416" endtime="20220612 15:20:16.477"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${button_string}</arg>
+<arg>REMOVE</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220612 15:20:16.477" endtime="20220612 15:20:16.478"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.416" endtime="20220612 15:20:16.478"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.053" endtime="20220612 15:20:16.478"/>
+</iter>
 <iter>
 <var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/button</var>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath:${item}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.369" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 00:11:19.369" endtime="20220612 00:11:19.498"/>
+<msg timestamp="20220612 15:20:16.479" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.478" endtime="20220612 15:20:16.564"/>
 </kw>
 <kw name="check add to cart button converted" library="common">
 <arg>${item}</arg>
@@ -50,53 +77,26 @@
 <var>${button_string}</var>
 <arg>xpath=${button_xpath}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.536" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 00:11:19.499" endtime="20220612 00:11:19.536"/>
+<msg timestamp="20220612 15:20:16.600" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.565" endtime="20220612 15:20:16.600"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${button_string}</arg>
 <arg>REMOVE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 00:11:19.536" endtime="20220612 00:11:19.537"/>
+<status status="PASS" starttime="20220612 15:20:16.600" endtime="20220612 15:20:16.601"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:19.498" endtime="20220612 00:11:19.537"/>
+<status status="PASS" starttime="20220612 15:20:16.564" endtime="20220612 15:20:16.601"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:19.368" endtime="20220612 00:11:19.537"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.538" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 00:11:19.537" endtime="20220612 00:11:19.599"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.714" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 00:11:19.601" endtime="20220612 00:11:19.714"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 00:11:19.715" endtime="20220612 00:11:19.715"/>
-</kw>
-<status status="PASS" starttime="20220612 00:11:19.600" endtime="20220612 00:11:19.715"/>
-</kw>
-<status status="PASS" starttime="20220612 00:11:19.537" endtime="20220612 00:11:19.716"/>
+<status status="PASS" starttime="20220612 15:20:16.478" endtime="20220612 15:20:16.601"/>
 </iter>
 <iter>
 <var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/button</var>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath:${item}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.717" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 00:11:19.716" endtime="20220612 00:11:19.911"/>
+<msg timestamp="20220612 15:20:16.602" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.601" endtime="20220612 15:20:16.664"/>
 </kw>
 <kw name="check add to cart button converted" library="common">
 <arg>${item}</arg>
@@ -104,83 +104,182 @@
 <var>${button_string}</var>
 <arg>xpath=${button_xpath}</arg>
 <doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.949" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 00:11:19.913" endtime="20220612 00:11:19.949"/>
+<msg timestamp="20220612 15:20:16.695" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.665" endtime="20220612 15:20:16.695"/>
 </kw>
 <kw name="Should Be Equal As Strings" library="BuiltIn">
 <arg>${button_string}</arg>
 <arg>REMOVE</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 00:11:19.949" endtime="20220612 00:11:19.950"/>
+<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.696"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:19.912" endtime="20220612 00:11:19.951"/>
+<status status="PASS" starttime="20220612 15:20:16.664" endtime="20220612 15:20:16.696"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:19.716" endtime="20220612 00:11:19.951"/>
+<status status="PASS" starttime="20220612 15:20:16.601" endtime="20220612 15:20:16.696"/>
 </iter>
-<status status="PASS" starttime="20220612 00:11:19.368" endtime="20220612 00:11:19.951"/>
+<iter>
+<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button</var>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:${item}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.697" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.758"/>
+</kw>
+<kw name="check add to cart button converted" library="common">
+<arg>${item}</arg>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${button_string}</var>
+<arg>xpath=${button_xpath}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.793" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.760" endtime="20220612 15:20:16.793"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${button_string}</arg>
+<arg>REMOVE</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220612 15:20:16.794" endtime="20220612 15:20:16.794"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.758" endtime="20220612 15:20:16.794"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.794"/>
+</iter>
+<iter>
+<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button</var>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:${item}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.795" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.795" endtime="20220612 15:20:16.862"/>
+</kw>
+<kw name="check add to cart button converted" library="common">
+<arg>${item}</arg>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${button_string}</var>
+<arg>xpath=${button_xpath}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.898" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.864" endtime="20220612 15:20:16.898"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${button_string}</arg>
+<arg>REMOVE</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220612 15:20:16.898" endtime="20220612 15:20:16.899"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.862" endtime="20220612 15:20:16.899"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.794" endtime="20220612 15:20:16.899"/>
+</iter>
+<iter>
+<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[2]/button</var>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:${item}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.900" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[2]/button'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.899" endtime="20220612 15:20:16.958"/>
+</kw>
+<kw name="check add to cart button converted" library="common">
+<arg>${item}</arg>
+<kw name="Get Text" library="SeleniumLibrary">
+<var>${button_string}</var>
+<arg>xpath=${button_xpath}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<msg timestamp="20220612 15:20:16.988" level="INFO">${button_string} = REMOVE</msg>
+<status status="PASS" starttime="20220612 15:20:16.960" endtime="20220612 15:20:16.988"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${button_string}</arg>
+<arg>REMOVE</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220612 15:20:16.988" endtime="20220612 15:20:16.989"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.958" endtime="20220612 15:20:16.989"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:16.899" endtime="20220612 15:20:16.989"/>
+</iter>
+<status status="PASS" starttime="20220612 15:20:16.053" endtime="20220612 15:20:16.989"/>
 </for>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>xpath:${cart_icon}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 00:11:19.952" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[1]/div[1]/div[3]/a'.</msg>
-<status status="PASS" starttime="20220612 00:11:19.951" endtime="20220612 00:11:20.037"/>
+<msg timestamp="20220612 15:20:16.990" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[1]/div[1]/div[3]/a'.</msg>
+<status status="PASS" starttime="20220612 15:20:16.989" endtime="20220612 15:20:17.071"/>
 </kw>
-<kw name="check saucelabsbikelight,saucelabsonesie and saucelabs fleece jacket are added to cart" library="common">
+<kw name="check for all items added to cart" library="common">
 <kw name="Get Element Count" library="SeleniumLibrary">
 <var>${cart_item_count}</var>
 <arg>class:cart_item</arg>
 <doc>Returns the number of elements matching ``locator``.</doc>
-<msg timestamp="20220612 00:11:20.061" level="INFO">${cart_item_count} = 3</msg>
-<status status="PASS" starttime="20220612 00:11:20.039" endtime="20220612 00:11:20.061"/>
+<msg timestamp="20220612 15:20:17.086" level="INFO">${cart_item_count} = 6</msg>
+<status status="PASS" starttime="20220612 15:20:17.071" endtime="20220612 15:20:17.086"/>
 </kw>
 <if>
-<branch type="IF" condition="${cart_item_count} == 3">
+<branch type="IF" condition="${cart_item_count} == 6">
 <kw name="Log To Console" library="BuiltIn">
-<arg>products is added</arg>
+<arg>products are added</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220612 00:11:20.062" endtime="20220612 00:11:20.062"/>
+<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.087"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>Sauce Labs Onesie</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 00:11:20.087" level="INFO">Current page contains text 'Sauce Labs Onesie'.</msg>
-<status status="PASS" starttime="20220612 00:11:20.063" endtime="20220612 00:11:20.088"/>
+<msg timestamp="20220612 15:20:17.112" level="INFO">Current page contains text 'Sauce Labs Onesie'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.088" endtime="20220612 15:20:17.112"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>Sauce Labs Bike Light</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 00:11:20.117" level="INFO">Current page contains text 'Sauce Labs Bike Light'.</msg>
-<status status="PASS" starttime="20220612 00:11:20.088" endtime="20220612 00:11:20.117"/>
+<msg timestamp="20220612 15:20:17.138" level="INFO">Current page contains text 'Sauce Labs Bike Light'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.113" endtime="20220612 15:20:17.138"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>Sauce Labs Fleece Jacket</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 00:11:20.136" level="INFO">Current page contains text 'Sauce Labs Fleece Jacket'.</msg>
-<status status="PASS" starttime="20220612 00:11:20.118" endtime="20220612 00:11:20.136"/>
+<msg timestamp="20220612 15:20:17.156" level="INFO">Current page contains text 'Sauce Labs Fleece Jacket'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.138" endtime="20220612 15:20:17.156"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:20.062" endtime="20220612 00:11:20.136"/>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Sauce Labs Bolt T-Shirt</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220612 15:20:17.175" level="INFO">Current page contains text 'Sauce Labs Bolt T-Shirt'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.157" endtime="20220612 15:20:17.175"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Sauce Labs Backpack</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220612 15:20:17.193" level="INFO">Current page contains text 'Sauce Labs Backpack'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.175" endtime="20220612 15:20:17.193"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Test.allTheThings() T-Shirt (Red)</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220612 15:20:17.209" level="INFO">Current page contains text 'Test.allTheThings() T-Shirt (Red)'.</msg>
+<status status="PASS" starttime="20220612 15:20:17.193" endtime="20220612 15:20:17.209"/>
+</kw>
+<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.209"/>
 </branch>
 <branch type="ELSE">
 <kw name="Fail" library="BuiltIn">
-<arg>Product not added to cart</arg>
+<arg>all items are not added to cart</arg>
 <doc>Fails the test with the given message and optionally alters its tags.</doc>
-<status status="NOT RUN" starttime="20220612 00:11:20.136" endtime="20220612 00:11:20.136"/>
+<status status="NOT RUN" starttime="20220612 15:20:17.209" endtime="20220612 15:20:17.209"/>
 </kw>
-<status status="NOT RUN" starttime="20220612 00:11:20.136" endtime="20220612 00:11:20.136"/>
+<status status="NOT RUN" starttime="20220612 15:20:17.209" endtime="20220612 15:20:17.209"/>
 </branch>
-<status status="PASS" starttime="20220612 00:11:20.061" endtime="20220612 00:11:20.136"/>
+<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.209"/>
 </if>
-<status status="PASS" starttime="20220612 00:11:20.037" endtime="20220612 00:11:20.136"/>
+<status status="PASS" starttime="20220612 15:20:17.071" endtime="20220612 15:20:17.209"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:19.367" endtime="20220612 00:11:20.137"/>
+<status status="PASS" starttime="20220612 15:20:16.052" endtime="20220612 15:20:17.209"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220612 00:11:20.138" endtime="20220612 00:11:22.400"/>
+<status status="PASS" starttime="20220612 15:20:17.211" endtime="20220612 15:20:19.437"/>
 </kw>
-<status status="PASS" starttime="20220612 00:11:15.925" endtime="20220612 00:11:22.402"/>
+<status status="PASS" starttime="20220612 15:20:13.207" endtime="20220612 15:20:19.439"/>
 </test>
-<status status="PASS" starttime="20220612 00:11:15.420" endtime="20220612 00:11:22.412"/>
+<status status="PASS" starttime="20220612 15:20:12.692" endtime="20220612 15:20:19.448"/>
 </suite>
 <statistics>
 <total>
