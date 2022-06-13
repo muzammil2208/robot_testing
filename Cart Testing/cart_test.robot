@@ -4,8 +4,10 @@ Resource        ../common.robot
 Test Setup    login to saucelabs
 Test Teardown   close browser
 
+
 *** Test Cases ***
 no product
+       Setup chromedriver
        check cart for no item
 
 SauceLabsBackpack 
@@ -32,6 +34,6 @@ SauceLabsBackpackandSauceLabsBikeLight
 ThreeItems
        check cart for SaucelabsBikeLight + SauceLabsOnesie + SauceLabsFleeceJacket
 
-all_products
+AllProducts
        check all items are added to cart
 

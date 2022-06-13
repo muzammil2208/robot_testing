@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220613 23:29:10.838" rpa="false" schemaversion="3">
+<suite id="s1" name="Checkout" source="C:\Users\Dell\OneDrive\Desktop\robotlearning\checkoutTesting\checkout.robot">
+<test id="s1-t1" name="NoProducts" line="8">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:29:11.251" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<status status="PASS" starttime="20220613 23:29:11.251" endtime="20220613 23:29:13.422"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220613 23:29:13.423" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
+<status status="PASS" starttime="20220613 23:29:13.423" endtime="20220613 23:29:13.624"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220613 23:29:13.625" level="INFO">Typing text 'secret_sauce' into text field 'xpath:/html/body/div/div/div[2]/div[1]/div[1]/div/form/div[2]/input'.</msg>
+<status status="PASS" starttime="20220613 23:29:13.625" endtime="20220613 23:29:13.787"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220613 23:29:13.788" level="INFO">Clicking button 'id:login-button'.</msg>
+<status status="PASS" starttime="20220613 23:29:13.787" endtime="20220613 23:29:13.971"/>
+</kw>
+<status status="PASS" starttime="20220613 23:29:11.251" endtime="20220613 23:29:13.972"/>
+</kw>
+<kw name="try to check out without adding products to cart" library="common">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath:${cart_icon}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220613 23:29:14.009" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[1]/div[1]/div[3]/a'.</msg>
+<status status="PASS" starttime="20220613 23:29:14.008" endtime="20220613 23:29:14.122"/>
+</kw>
+<kw name="Page Should Not Contain Button" library="SeleniumLibrary">
+<arg>xpath:${checkout_button}</arg>
+<arg>CHECKOUT BUTTON SHOULD NOT BE VISIBLE</arg>
+<doc>Verifies button ``locator`` is not found from current page.</doc>
+<msg timestamp="20220613 23:29:14.406" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20220613 23:29:14.408" level="FAIL">CHECKOUT BUTTON SHOULD NOT BE VISIBLE</msg>
+<status status="FAIL" starttime="20220613 23:29:14.123" endtime="20220613 23:29:14.411"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:29:14.004" endtime="20220613 23:29:14.413"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:29:14.415" endtime="20220613 23:29:16.629"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:29:11.249" endtime="20220613 23:29:16.633">CHECKOUT BUTTON SHOULD NOT BE VISIBLE</status>
+</test>
+<status status="FAIL" starttime="20220613 23:29:10.841" endtime="20220613 23:29:16.659"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Checkout">Checkout</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

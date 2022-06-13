@@ -1,296 +1,509 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220612 15:20:12.687" rpa="false" schemaversion="3">
+<robot generator="Robot 5.0 (Python 3.10.4 on win32)" generated="20220613 23:17:24.898" rpa="false" schemaversion="3">
 <suite id="s1" name="Cart Test" source="C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing\cart_test.robot">
-<test id="s1-t1" name="all_products" line="35">
+<test id="s1-t1" name="no product" line="9">
 <kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:25.817" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:25.817" endtime="20220613 23:17:25.817"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:25.816" endtime="20220613 23:17:25.817"/>
+</kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>https://www.saucedemo.com/</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220612 15:20:13.210" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
-<status status="PASS" starttime="20220612 15:20:13.208" endtime="20220612 15:20:15.524"/>
+<msg timestamp="20220613 23:17:25.818" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:25.862" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:25.864" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:25.817" endtime="20220613 23:17:25.871"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>id:user-name</arg>
 <arg>standard_user</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:15.528" level="INFO">Typing text 'standard_user' into text field 'id:user-name'.</msg>
-<status status="PASS" starttime="20220612 15:20:15.525" endtime="20220612 15:20:15.728"/>
+<status status="NOT RUN" starttime="20220613 23:17:25.871" endtime="20220613 23:17:25.871"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>xpath:${password_field_xpath}</arg>
 <arg>secret_sauce</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:15.729" level="INFO">Typing text 'secret_sauce' into text field 'xpath:/html/body/div/div/div[2]/div[1]/div[1]/div/form/div[2]/input'.</msg>
-<status status="PASS" starttime="20220612 15:20:15.728" endtime="20220612 15:20:15.884"/>
+<status status="NOT RUN" starttime="20220613 23:17:25.871" endtime="20220613 23:17:25.871"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>id:login-button</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:15.885" level="INFO">Clicking button 'id:login-button'.</msg>
-<status status="PASS" starttime="20220612 15:20:15.884" endtime="20220612 15:20:16.039"/>
+<status status="NOT RUN" starttime="20220613 23:17:25.871" endtime="20220613 23:17:25.871"/>
 </kw>
-<status status="PASS" starttime="20220612 15:20:13.208" endtime="20220612 15:20:16.040"/>
-</kw>
-<kw name="check all items are added to cart" library="common">
-<for flavor="IN">
-<var>${item}</var>
-<value>@{all_products}</value>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.055" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.054" endtime="20220612 15:20:16.415"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.477" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.416" endtime="20220612 15:20:16.477"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.477" endtime="20220612 15:20:16.478"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.416" endtime="20220612 15:20:16.478"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.053" endtime="20220612 15:20:16.478"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.479" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.478" endtime="20220612 15:20:16.564"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.600" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.565" endtime="20220612 15:20:16.600"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.600" endtime="20220612 15:20:16.601"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.564" endtime="20220612 15:20:16.601"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.478" endtime="20220612 15:20:16.601"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.602" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.601" endtime="20220612 15:20:16.664"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.695" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.665" endtime="20220612 15:20:16.695"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.696"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.664" endtime="20220612 15:20:16.696"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.601" endtime="20220612 15:20:16.696"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.697" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.758"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.793" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.760" endtime="20220612 15:20:16.793"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.794" endtime="20220612 15:20:16.794"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.758" endtime="20220612 15:20:16.794"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.696" endtime="20220612 15:20:16.794"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.795" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.795" endtime="20220612 15:20:16.862"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.898" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.864" endtime="20220612 15:20:16.898"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.898" endtime="20220612 15:20:16.899"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.862" endtime="20220612 15:20:16.899"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.794" endtime="20220612 15:20:16.899"/>
-</iter>
-<iter>
-<var name="${item}">/html/body/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[2]/button</var>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${item}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.900" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[2]/button'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.899" endtime="20220612 15:20:16.958"/>
-</kw>
-<kw name="check add to cart button converted" library="common">
-<arg>${item}</arg>
-<kw name="Get Text" library="SeleniumLibrary">
-<var>${button_string}</var>
-<arg>xpath=${button_xpath}</arg>
-<doc>Returns the text value of the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.988" level="INFO">${button_string} = REMOVE</msg>
-<status status="PASS" starttime="20220612 15:20:16.960" endtime="20220612 15:20:16.988"/>
-</kw>
-<kw name="Should Be Equal As Strings" library="BuiltIn">
-<arg>${button_string}</arg>
-<arg>REMOVE</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" starttime="20220612 15:20:16.988" endtime="20220612 15:20:16.989"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.958" endtime="20220612 15:20:16.989"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.899" endtime="20220612 15:20:16.989"/>
-</iter>
-<status status="PASS" starttime="20220612 15:20:16.053" endtime="20220612 15:20:16.989"/>
-</for>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath:${cart_icon}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220612 15:20:16.990" level="INFO">Clicking element 'xpath:/html/body/div/div/div/div[1]/div[1]/div[3]/a'.</msg>
-<status status="PASS" starttime="20220612 15:20:16.989" endtime="20220612 15:20:17.071"/>
-</kw>
-<kw name="check for all items added to cart" library="common">
-<kw name="Get Element Count" library="SeleniumLibrary">
-<var>${cart_item_count}</var>
-<arg>class:cart_item</arg>
-<doc>Returns the number of elements matching ``locator``.</doc>
-<msg timestamp="20220612 15:20:17.086" level="INFO">${cart_item_count} = 6</msg>
-<status status="PASS" starttime="20220612 15:20:17.071" endtime="20220612 15:20:17.086"/>
-</kw>
-<if>
-<branch type="IF" condition="${cart_item_count} == 6">
-<kw name="Log To Console" library="BuiltIn">
-<arg>products are added</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.087"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Sauce Labs Onesie</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.112" level="INFO">Current page contains text 'Sauce Labs Onesie'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.088" endtime="20220612 15:20:17.112"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Sauce Labs Bike Light</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.138" level="INFO">Current page contains text 'Sauce Labs Bike Light'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.113" endtime="20220612 15:20:17.138"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Sauce Labs Fleece Jacket</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.156" level="INFO">Current page contains text 'Sauce Labs Fleece Jacket'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.138" endtime="20220612 15:20:17.156"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Sauce Labs Bolt T-Shirt</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.175" level="INFO">Current page contains text 'Sauce Labs Bolt T-Shirt'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.157" endtime="20220612 15:20:17.175"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Sauce Labs Backpack</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.193" level="INFO">Current page contains text 'Sauce Labs Backpack'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.175" endtime="20220612 15:20:17.193"/>
-</kw>
-<kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>Test.allTheThings() T-Shirt (Red)</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220612 15:20:17.209" level="INFO">Current page contains text 'Test.allTheThings() T-Shirt (Red)'.</msg>
-<status status="PASS" starttime="20220612 15:20:17.193" endtime="20220612 15:20:17.209"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.209"/>
-</branch>
-<branch type="ELSE">
-<kw name="Fail" library="BuiltIn">
-<arg>all items are not added to cart</arg>
-<doc>Fails the test with the given message and optionally alters its tags.</doc>
-<status status="NOT RUN" starttime="20220612 15:20:17.209" endtime="20220612 15:20:17.209"/>
-</kw>
-<status status="NOT RUN" starttime="20220612 15:20:17.209" endtime="20220612 15:20:17.209"/>
-</branch>
-<status status="PASS" starttime="20220612 15:20:17.086" endtime="20220612 15:20:17.209"/>
-</if>
-<status status="PASS" starttime="20220612 15:20:17.071" endtime="20220612 15:20:17.209"/>
-</kw>
-<status status="PASS" starttime="20220612 15:20:16.052" endtime="20220612 15:20:17.209"/>
+<status status="FAIL" starttime="20220613 23:17:25.816" endtime="20220613 23:17:25.872"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220612 15:20:17.211" endtime="20220612 15:20:19.437"/>
+<status status="PASS" starttime="20220613 23:17:25.874" endtime="20220613 23:17:25.874"/>
 </kw>
-<status status="PASS" starttime="20220612 15:20:13.207" endtime="20220612 15:20:19.439"/>
+<status status="FAIL" starttime="20220613 23:17:25.813" endtime="20220613 23:17:25.887">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
 </test>
-<status status="PASS" starttime="20220612 15:20:12.692" endtime="20220612 15:20:19.448"/>
+<test id="s1-t2" name="SauceLabsBackpack" line="13">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:25.908" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:25.907" endtime="20220613 23:17:25.908"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:25.906" endtime="20220613 23:17:25.908"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:25.909" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:25.917" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:25.917" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:25.908" endtime="20220613 23:17:25.919"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.919" endtime="20220613 23:17:25.920"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.920" endtime="20220613 23:17:25.920"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.920" endtime="20220613 23:17:25.920"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.906" endtime="20220613 23:17:25.921"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:25.943" endtime="20220613 23:17:25.943"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.897" endtime="20220613 23:17:25.945">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t3" name="SauceLabsBikeLight" line="16">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:25.968" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:25.968" endtime="20220613 23:17:25.968"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:25.967" endtime="20220613 23:17:25.969"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:25.969" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:25.972" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:25.972" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:25.969" endtime="20220613 23:17:25.973"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.973" endtime="20220613 23:17:25.974"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.974" endtime="20220613 23:17:25.974"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:25.974" endtime="20220613 23:17:25.974"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.967" endtime="20220613 23:17:25.975"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:25.976" endtime="20220613 23:17:25.977"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.966" endtime="20220613 23:17:25.978">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t4" name="SauceLabsBoltTshirt" line="19">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.000" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:25.991" endtime="20220613 23:17:26.001"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:25.988" endtime="20220613 23:17:26.001"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.002" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.006" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.006" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.001" endtime="20220613 23:17:26.011"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.013" endtime="20220613 23:17:26.014"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.014" endtime="20220613 23:17:26.014"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.016" endtime="20220613 23:17:26.016"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.987" endtime="20220613 23:17:26.017"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.025" endtime="20220613 23:17:26.026"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:25.983" endtime="20220613 23:17:26.027">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t5" name="SauceLabsFleeceJacket" line="22">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.038" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.037" endtime="20220613 23:17:26.038"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.037" endtime="20220613 23:17:26.038"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.039" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.046" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.047" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.039" endtime="20220613 23:17:26.048"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.049" endtime="20220613 23:17:26.049"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.049" endtime="20220613 23:17:26.049"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.050" endtime="20220613 23:17:26.050"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.036" endtime="20220613 23:17:26.051"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.053" endtime="20220613 23:17:26.054"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.035" endtime="20220613 23:17:26.055">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t6" name="SauceLabsOnesie" line="25">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.065" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.064" endtime="20220613 23:17:26.065"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.064" endtime="20220613 23:17:26.065"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.068" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.073" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.079" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.066" endtime="20220613 23:17:26.081"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.082" endtime="20220613 23:17:26.082"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.082" endtime="20220613 23:17:26.082"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.083" endtime="20220613 23:17:26.083"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.063" endtime="20220613 23:17:26.084"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.088" endtime="20220613 23:17:26.089"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.060" endtime="20220613 23:17:26.096">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t7" name="SauceLabsTestAllThingsTshirt" line="28">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.118" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.117" endtime="20220613 23:17:26.118"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.117" endtime="20220613 23:17:26.118"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.119" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.123" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.124" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.118" endtime="20220613 23:17:26.125"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.125" endtime="20220613 23:17:26.125"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.126" endtime="20220613 23:17:26.126"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.126" endtime="20220613 23:17:26.126"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.114" endtime="20220613 23:17:26.127"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.128" endtime="20220613 23:17:26.130"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.111" endtime="20220613 23:17:26.132">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t8" name="SauceLabsBackpackandSauceLabsBikeLight" line="31">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.144" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.143" endtime="20220613 23:17:26.144"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.143" endtime="20220613 23:17:26.144"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.151" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.157" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.157" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.149" endtime="20220613 23:17:26.159"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.159" endtime="20220613 23:17:26.160"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.160" endtime="20220613 23:17:26.160"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.160" endtime="20220613 23:17:26.160"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.142" endtime="20220613 23:17:26.161"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.166" endtime="20220613 23:17:26.167"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.138" endtime="20220613 23:17:26.168">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t9" name="ThreeItems" line="34">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.180" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.180" endtime="20220613 23:17:26.181"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.178" endtime="20220613 23:17:26.182"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.182" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.186" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.187" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.182" endtime="20220613 23:17:26.189"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.190" endtime="20220613 23:17:26.190"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.190" endtime="20220613 23:17:26.190"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.190" endtime="20220613 23:17:26.191"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.176" endtime="20220613 23:17:26.192"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.203" endtime="20220613 23:17:26.203"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.172" endtime="20220613 23:17:26.204">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<test id="s1-t10" name="AllProducts" line="37">
+<kw name="login to saucelabs" library="common" type="SETUP">
+<kw name="Setup chromedriver" library="common">
+<kw name="Set Environment Variable" library="OperatingSystem">
+<arg>webdriver.chrome.driver</arg>
+<arg>${EXECDIR} /bin/chromedrivere.exe</arg>
+<doc>Sets an environment variable to a specified value.</doc>
+<msg timestamp="20220613 23:17:26.218" level="INFO">Environment variable 'webdriver.chrome.driver' set to value 'C:\Users\Dell\OneDrive\Desktop\robotlearning\cart testing /bin/chromedrivere.exe'.</msg>
+<status status="PASS" starttime="20220613 23:17:26.217" endtime="20220613 23:17:26.218"/>
+</kw>
+<status status="PASS" starttime="20220613 23:17:26.214" endtime="20220613 23:17:26.218"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.saucedemo.com/</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220613 23:17:26.218" level="INFO">Opening browser 'chrome' to base url 'https://www.saucedemo.com/'.</msg>
+<msg timestamp="20220613 23:17:26.225" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20220613 23:17:26.227" level="FAIL">WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</msg>
+<status status="FAIL" starttime="20220613 23:17:26.218" endtime="20220613 23:17:26.229"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:user-name</arg>
+<arg>standard_user</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.230" endtime="20220613 23:17:26.230"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath:${password_field_xpath}</arg>
+<arg>secret_sauce</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.230" endtime="20220613 23:17:26.230"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>id:login-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220613 23:17:26.230" endtime="20220613 23:17:26.230"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.213" endtime="20220613 23:17:26.232"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220613 23:17:26.237" endtime="20220613 23:17:26.238"/>
+</kw>
+<status status="FAIL" starttime="20220613 23:17:26.207" endtime="20220613 23:17:26.239">Setup failed:
+WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home
+</status>
+</test>
+<status status="FAIL" starttime="20220613 23:17:24.904" endtime="20220613 23:17:26.253"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="10" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Cart Test">Cart Test</stat>
+<stat pass="0" fail="10" skip="0" id="s1" name="Cart Test">Cart Test</stat>
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20220613 23:17:25.770" level="ERROR">Error in file 'C:\Users\Dell\OneDrive\Desktop\robotlearning\common.robot' on line 4: Setting 'Suite Setup' is not allowed in resource file.</msg>
 </errors>
 </robot>

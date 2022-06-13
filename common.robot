@@ -1,5 +1,7 @@
 *** settings ***
-Library     SeleniumLibrary
+Library     SeleniumLibrary    
+Library  OperatingSystem
+
 
 
 *** variables ***
@@ -15,8 +17,11 @@ ${saucelabs_onesie}     /html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/
 ${sauclabs_testallthings_tshirt}        /html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[2]/button
 @{products_to_add}   ${saucelabs_bike_light}   ${saucelabs_onesie}   ${saucelabs_fleece_jacket}
 @{all_products}      ${saucelabs_backpack}  ${saucelabs_bike_light}  ${saucelabs_fleece_jacket}  ${saucelabs_onesie}  ${sauclabs_testallthings_tshirt}  ${saucelabs_bolt_tshirt}
- 
+${checkout_button}      /html/body/div/div/div/div[2]/div/div[2]/button[2]
 *** keywords ***
+# chromedriver setup
+Setup chromedriver
+  Set Environment Variable  webdriver.chrome.driver  ${EXECDIR} /bin/chromedrivere.exe  
 
 # common keywordd
 check add to cart button converted
@@ -150,3 +155,9 @@ check all items are added to cart
     END
     click element   xpath:${cart_icon}
     check for all items added to cart
+
+
+# checkout keywords
+try to check out without adding products to cart
+    click element       xpath:${cart_icon}
+    page should not contain button      xpath:${checkout_button}       CHECKOUT BUTTON SHOULD NOT BE VISIBLE
