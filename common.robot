@@ -1,6 +1,7 @@
 *** settings ***
 Library     SeleniumLibrary    
 Library  OperatingSystem
+Library     FinalAmount.py
 
 
 
@@ -18,6 +19,7 @@ ${sauclabs_testallthings_tshirt}        /html/body/div/div/div/div[2]/div/div/di
 @{products_to_add}   ${saucelabs_bike_light}   ${saucelabs_onesie}   ${saucelabs_fleece_jacket}
 @{all_products}      ${saucelabs_backpack}  ${saucelabs_bike_light}  ${saucelabs_fleece_jacket}  ${saucelabs_onesie}  ${sauclabs_testallthings_tshirt}  ${saucelabs_bolt_tshirt}
 ${checkout_button}      /html/body/div/div/div/div[2]/div/div[2]/button[2]
+${continue_btn}         /html/body/div/div/div/div[2]/div/form/div[2]/input
 *** keywords ***
 # chromedriver setup
 Setup chromedriver
@@ -157,7 +159,29 @@ check all items are added to cart
     check for all items added to cart
 
 
-# checkout keywords
+# checkout keywords---------------------------------------------------------------------------------------------------------------
+fill checkout details
+    input text      id:first-name     Muzammil
+    input text      id:last-name      Khan
+    input text      id:postal-code       401107
+    click element       xpath:${continue_btn}
+    
+
 try to check out without adding products to cart
     click element       xpath:${cart_icon}
     page should not contain button      xpath:${checkout_button}       CHECKOUT BUTTON SHOULD NOT BE VISIBLE
+
+checkout with saucelabsbackpack
+    check cart for SauceLabsBackpack
+     ${item_price}=     get text        class:inventory_item_price
+     ${item_name}=      get text        class:inventory_item_name
+     click element     xpath:${checkout_button}
+     fill checkout details
+     page should contain    ${item_price}
+     page should contain    ${item_name}
+     ${finalAmount}=    get_final_amount    ${item_price}       
+     log to console     ${finalAmount}
+     page should contain    ${finalAmount}
+     
+
+        
