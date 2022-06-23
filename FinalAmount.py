@@ -1,5 +1,9 @@
-def get_final_amount(amount):
-     amount=float(amount[1:6])
-     rate_of_tax=round(float(amount*0.08),1)
-     finalamount=amount+rate_of_tax
+
+
+def calculate_final_amount(price_list):
+     amount=float(0)
+     for price in price_list:
+          amount=float(float(price[1:6])+amount)
+     rate_of_tax=float(amount*0.08)
+     finalamount=round(amount+rate_of_tax,2)
      return finalamount

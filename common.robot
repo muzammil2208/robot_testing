@@ -2,6 +2,7 @@
 Library     SeleniumLibrary    
 Library  OperatingSystem
 Library     FinalAmount.py
+Library     Collections
 
 
 
@@ -20,6 +21,7 @@ ${sauclabs_testallthings_tshirt}        /html/body/div/div/div/div[2]/div/div/di
 @{all_products}      ${saucelabs_backpack}  ${saucelabs_bike_light}  ${saucelabs_fleece_jacket}  ${saucelabs_onesie}  ${sauclabs_testallthings_tshirt}  ${saucelabs_bolt_tshirt}
 ${checkout_button}      /html/body/div/div/div/div[2]/div/div[2]/button[2]
 ${continue_btn}         /html/body/div/div/div/div[2]/div/form/div[2]/input
+${finish_btn}           /html/body/div/div/div/div[2]/div/div[2]/div[8]/button[2]
 *** keywords ***
 # chromedriver setup
 Setup chromedriver
@@ -160,12 +162,48 @@ check all items are added to cart
 
 
 # checkout keywords---------------------------------------------------------------------------------------------------------------
+
+
+check final amount for items
+    # getting list of names of products on in the cart
+    ${products_name}=   Get WebElements     class:inventory_item_name
+    @{names}=       Create List
+    ${products_price}=  Get WebElements     class:inventory_item_price
+    @{prices}=      Create List
+    FOR   ${name}   IN   @{products_name}
+        ${product_name}=    Get Text        ${name}
+        Append To List  ${names}   ${product_name}
+    END
+    FOR     ${price}    IN    @{products_price}
+        ${product_price}=   Get Text    ${price}
+        Append To List  ${prices}   ${product_price}
+    END
+
+    # going to checkout 
+    click element       xpath:${checkout_button}
+    fill checkout details
+
+    # validating all elements are present or not
+    FOR     ${name}     IN     @{names}
+            page should contain     ${name}
+    END
+
+    # validating final amount is correct or not 
+    ${finalAmount}=   Calculate Final Amount    ${prices}       
+     log to console     ${finalAmount}
+     page should contain    ${finalAmount}
+    
+
 fill checkout details
     input text      id:first-name     Muzammil
     input text      id:last-name      Khan
     input text      id:postal-code       401107
     click element       xpath:${continue_btn}
-    
+
+check final screen is appearing
+    click element   xpath:${finish_btn}
+    page should contain      THANK YOU FOR YOUR ORDER        
+    page should contain element     xpath:/html/body/div/div/div/div[2]/img    ORDER CONFIRMATION IMAGE NOT DISPLAYED
 
 try to check out without adding products to cart
     click element       xpath:${cart_icon}
@@ -173,15 +211,27 @@ try to check out without adding products to cart
 
 checkout with saucelabsbackpack
     check cart for SauceLabsBackpack
-     ${item_price}=     get text        class:inventory_item_price
-     ${item_name}=      get text        class:inventory_item_name
-     click element     xpath:${checkout_button}
-     fill checkout details
-     page should contain    ${item_price}
-     page should contain    ${item_name}
-     ${finalAmount}=    get_final_amount    ${item_price}       
-     log to console     ${finalAmount}
-     page should contain    ${finalAmount}
+    check finalamount for items
+    check final screen is appearing
+
+checkout with saucelabsbikelight
+    check cart for SauceLabsBikeLight
+    check finalamount for items
+    check final screen is appearing
+
+checkout with SauceLabsBoltTshirt
+    check cart for SauceLabsBoltTshirt
+    check finalamount for items
+    check final screen is appearing
+
+checkout with saucelabsbackpack and saucelabsbikelight
+    check cart for SauceLabsBackpack+SauceLabsBikeLight
+    check final amount for items
+    check final screen is appearing
+    
+
+
+   
      
 
         

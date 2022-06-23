@@ -11,3 +11,12 @@ NoProducts
 
 SauceLabsBackpack
     checkout with saucelabsbackpack
+
+SauceLabsBikeLight
+    checkout with saucelabsbikelight
+
+SauceLabsBoltTshirt
+    checkout with SauceLabsBoltTshirt
+
+multipleitems
+    checkout with saucelabsbackpack and saucelabsbikelight
