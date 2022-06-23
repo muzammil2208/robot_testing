@@ -18,5 +18,11 @@ SauceLabsBikeLight
 SauceLabsBoltTshirt
     checkout with SauceLabsBoltTshirt
 
-multipleitems
+TwoItems
     checkout with saucelabsbackpack and saucelabsbikelight
+
+ThreeItems
+    checkout with saucelabsbikelight,saucelabsonesie and Saucelabsfleecejacket
+
+all_products
+    checkout with all items

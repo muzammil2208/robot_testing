@@ -225,7 +225,18 @@ checkout with SauceLabsBoltTshirt
     check final screen is appearing
 
 checkout with saucelabsbackpack and saucelabsbikelight
+
     check cart for SauceLabsBackpack+SauceLabsBikeLight
+    check final amount for items
+    check final screen is appearing
+
+checkout with saucelabsbikelight,saucelabsonesie and Saucelabsfleecejacket
+    check cart for SaucelabsBikeLight + SauceLabsOnesie + SauceLabsFleeceJacket
+    check final amount for items
+    check final screen is appearing
+
+checkout with all items
+    check all items are added to cart
     check final amount for items
     check final screen is appearing
     
